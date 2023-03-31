@@ -8,8 +8,13 @@
 #include <QMenuBar>
 #include <QMenu>
 
-
+#include <QAction>
 #include <QToolBar>
+
+#include<QErrorMessage>
+
+#include<QFileDialog>
+
 #include <QMessageBox>
 QT_BEGIN_NAMESPACE
 namespace Ui { class TextEdit; }
@@ -26,20 +31,18 @@ public:
 
 
 private slots:
-    void slotNoImpl();
     void aboutSlot();
+
+    void actionOpenFile();
+    void actionSaveFile();
 private:
     Ui::TextEdit *ui;
     QTextEdit *textEdit;
-    /*QToolBar* createToolBar()
-    {
-        QToolBar* ptb = new QToolBar("Linker ToolBar");
-        ptb->addAction( "File", this, SLOT(slotNoImpl()));
-        ptb->addSeparator();
-        ptb->addAction( "Print", this, SLOT(slotNoImpl()));
-        return ptb;
-    }
-    */
+
+    QAction* actionFileOpen = new QAction("Открыть", this);
+    QAction* actionFileSave = new QAction("Сохранить", this);
+    QAction* actionFileExit = new QAction("Выход", this);
+    QAction* actionAbout = new QAction("Справка", this);
 
     QMenuBar* createMenuBar(){
 
@@ -52,8 +55,8 @@ private:
     QMenu* createFileMenu()
     {
         QMenu* fileMenu = new QMenu("File");
-        fileMenu->addAction("Открыть");
-        fileMenu->addAction("Сохранить");
+        fileMenu->addAction(actionFileOpen);
+        fileMenu->addAction(actionFileSave);
         fileMenu->addAction("Выход");
         return fileMenu;
     }
@@ -67,9 +70,11 @@ private:
     }
     QMenu* createHelpMenu(){
         QMenu* helpMenu = new QMenu("Help");
-        helpMenu->addAction("Справка");
+        helpMenu->addAction(actionAbout);
         helpMenu->addAction("О программе");
         return helpMenu;
     }
+
+
 };
 #endif // TEXTEDIT_H
