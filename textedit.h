@@ -1,21 +1,18 @@
 #ifndef TEXTEDIT_H
 #define TEXTEDIT_H
 
-#include <QMainWindow>
+#include    <QMainWindow>
 
-#include <QTextEdit>
+#include      <QTextEdit>
+#include       <QMenuBar>
+#include          <QMenu>
+#include        <QAction>
+#include       <QToolBar>
+#include  <QErrorMessage>
+#include    <QFileDialog>
+#include    <QMessageBox>
 
-#include <QMenuBar>
-#include <QMenu>
 
-#include <QAction>
-#include <QToolBar>
-
-#include<QErrorMessage>
-
-#include<QFileDialog>
-
-#include <QMessageBox>
 QT_BEGIN_NAMESPACE
 namespace Ui { class TextEdit; }
 QT_END_NAMESPACE
@@ -41,39 +38,39 @@ private:
     Ui::TextEdit *ui;
     QTextEdit *textEdit;
 
-    QAction* actionFileOpen = new QAction("Открыть", this);
-    QAction* actionFileSave = new QAction("Сохранить", this);
-    QAction* actionFileExit = new QAction("Выход", this);
-    QAction* actionAbout = new QAction("Справка", this);
+    QAction* actionFileOpen = new QAction ("Открыть",   this);
+    QAction* actionFileSave = new QAction ("Сохранить", this);
+    QAction* actionFileExit = new QAction ("Выход",     this);
+    QAction* actionAbout    = new QAction ("Справка",   this);
 
     QMenuBar* createMenuBar(){
 
-        QMenuBar* menuBar = new QMenuBar();
-        menuBar->addMenu(createFileMenu());
-        menuBar->addMenu(createEditMenu());
-        menuBar->addMenu(createHelpMenu());
+        QMenuBar* menuBar =  new QMenuBar();
+                  menuBar -> addMenu (createFileMenu());
+                  menuBar -> addMenu (createEditMenu());
+                  menuBar -> addMenu (createHelpMenu());
         return menuBar;
     }
     QMenu* createFileMenu()
     {
-        QMenu* fileMenu = new QMenu("File");
-        fileMenu->addAction(actionFileOpen);
-        fileMenu->addAction(actionFileSave);
-        fileMenu->addAction(actionFileExit);
+        QMenu* fileMenu =  new QMenu ("File");
+               fileMenu -> addAction (actionFileOpen);
+               fileMenu -> addAction (actionFileSave);
+               fileMenu -> addAction (actionFileExit);
         return fileMenu;
     }
     QMenu* createEditMenu()
     {
-        QMenu* editMenu = new QMenu("Edit");
-        editMenu->addAction("Найти");
-        editMenu->addAction("Заменить");
-        editMenu->addAction("Вырезать");
+        QMenu* editMenu =  new QMenu ("Edit");
+               editMenu -> addAction ("Найти");
+               editMenu -> addAction ("Заменить");
+               editMenu -> addAction ("Вырезать");
         return editMenu;
     }
     QMenu* createHelpMenu(){
-        QMenu* helpMenu = new QMenu("Help");
-        helpMenu->addAction(actionAbout);
-        helpMenu->addAction("О программе");
+        QMenu* helpMenu =  new QMenu ("Help");
+               helpMenu -> addAction (actionAbout);
+               helpMenu -> addAction ("О программе");
         return helpMenu;
     }
 
