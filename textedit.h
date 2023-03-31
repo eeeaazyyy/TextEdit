@@ -33,8 +33,10 @@ public:
 private slots:
     void aboutSlot();
 
-    void actionOpenFile();
-    void actionSaveFile();
+    void functionFileOpen();
+    void functionFileSave();
+    void functionFileExit();
+
 private:
     Ui::TextEdit *ui;
     QTextEdit *textEdit;
@@ -57,7 +59,7 @@ private:
         QMenu* fileMenu = new QMenu("File");
         fileMenu->addAction(actionFileOpen);
         fileMenu->addAction(actionFileSave);
-        fileMenu->addAction("Выход");
+        fileMenu->addAction(actionFileExit);
         return fileMenu;
     }
     QMenu* createEditMenu()

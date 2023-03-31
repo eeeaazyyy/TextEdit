@@ -12,8 +12,9 @@ TextEdit::TextEdit(QWidget *parent)
     setCentralWidget(textEdit);
 
     connect(actionAbout, &QAction::triggered, this, &TextEdit::aboutSlot);
-    connect(actionFileOpen, &QAction::triggered, this, &TextEdit::actionOpenFile);
-    connect(actionFileSave, &QAction::triggered, this, &TextEdit::actionSaveFile);
+    connect(actionFileOpen, &QAction::triggered, this, &TextEdit::functionFileOpen);
+    connect(actionFileSave, &QAction::triggered, this, &TextEdit::functionFileSave);
+    connect(actionFileExit, &QAction::triggered, this, &TextEdit::functionFileExit);
 }
 
 TextEdit::~TextEdit()
@@ -26,10 +27,10 @@ void TextEdit::aboutSlot()
     QMessageBox::information(0, "Message", "Not implemented");
 }
 
-void TextEdit::actionOpenFile()
+void TextEdit::functionFileOpen()
 {
     QString fileName = QFileDialog::getOpenFileName(nullptr,  "Выберите приложение",
-                                                   QString(), "Исполняемые файлы (*.txt)");
+                                                   QString(), "Исполняемые файлы (*.txt *.doc *.docx)");
     QFile file(fileName);
     if (fileName.isEmpty())
         return;
@@ -42,10 +43,10 @@ void TextEdit::actionOpenFile()
 
 }
 
-void TextEdit::actionSaveFile()
+void TextEdit::functionFileSave()
 {
     QString nomeFile = QFileDialog::getSaveFileName(this, tr("Save File"), "",
-                                                        tr("Исполняемые файлы (*.txt);;C++ File (*.cpp *.h)"));
+                                                        tr("Исполняемые файлы (*.txt);;Docx Files (*.doc *.docx);;Pdf (*.pdf)"));
         if (nomeFile != "") {
             QFile file(nomeFile);
 
@@ -61,5 +62,10 @@ void TextEdit::actionSaveFile()
             }
         }
         else qDebug()<<"Error"<<Qt::endl;
+}
+
+void TextEdit::functionFileExit()
+{
+    QCoreApplication::quit();
 }
 
