@@ -3,16 +3,16 @@
 
 #include    <QMainWindow>
 
-#include      <QTextEdit>
-#include       <QMenuBar>
-#include          <QMenu>
-#include        <QAction>
-#include       <QToolBar>
-#include  <QErrorMessage>
-#include    <QFileDialog>
-#include    <QMessageBox>
-#include <QTextDocumentWriter>
-#include <QPrinter>
+#include            <QTextEdit>
+#include             <QMenuBar>
+#include                <QMenu>
+#include              <QAction>
+#include             <QToolBar>
+#include        <QErrorMessage>
+#include          <QFileDialog>
+#include          <QMessageBox>
+#include  <QTextDocumentWriter>
+#include  <QPrinter>
 
 
 QT_BEGIN_NAMESPACE

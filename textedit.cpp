@@ -44,43 +44,37 @@ void TextEdit::functionFileSave()
 {
     QString nameFile = QFileDialog::getSaveFileName(this, tr("Save File"), "",
                                                         tr("Исполняемые файлы (*.txt);;Docx Files (*.doc *.docx);;Pdf (*.pdf)"));
-        if (nameFile != "")
+        if (!nameFile.isEmpty())//nameFile != ""
         {
-            QFile file(nameFile);
+            QFile     file       (nameFile);
+            QFileInfo fileInfo   (nameFile);
+            QString   suffixFile (fileInfo.completeSuffix());
 
-            QFileInfo fileInfo(nameFile);
-            QString ext = fileInfo.completeSuffix();
-
-            qDebug()<<ext<<" Суффикс"<<Qt::endl;
-
-            QTextDocumentWriter textWriter;
-            textWriter.setFileName(file.fileName());
+            qDebug()<<suffixFile<<" Суффикс"<<Qt::endl;
 
             if (file.open(QIODevice::ReadWrite))
             {
                 /*QTextStream stream (&file);
                             stream << textEdit->toPlainText();*/
-                if (ext == "pdf"){
+                if (suffixFile == "pdf"){
                       QPrinter printer;
-                      printer.setOutputFormat(QPrinter::PdfFormat);
-                      printer.setOutputFileName(nameFile);
+                      printer.setOutputFormat   (QPrinter::PdfFormat);
+                      printer.setOutputFileName (nameFile);
 
                       QTextDocument *doc = textEdit->document();
                       doc->print(&printer);
+
                       qDebug()<<"Файл сохранился в PDF"<<Qt::endl;
 
                 }
-                if (ext == "txt"||ext =="docx"||ext=="doc"){
+                if (suffixFile == "txt"||suffixFile =="docx"||suffixFile=="doc"){
+                    QTextDocumentWriter textWriter;
+                    textWriter.setFileName (file.fileName());
+                    textWriter.setFormat   (suffixFile.toLatin1());
+                    textWriter.write       (textEdit->document());
 
-                    QTextDocumentWriter doc;
-                    doc.setFileName(nameFile);
-                    doc.setFormat(ext.toLatin1());
-                    doc.write(textEdit->document());
                     qDebug()<<"Файл сохранился в TXT"<<Qt::endl;
                 }
-
-
-
                 file.flush();
                 file.close();
             }
