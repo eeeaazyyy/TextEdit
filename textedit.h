@@ -11,6 +11,8 @@
 #include  <QErrorMessage>
 #include    <QFileDialog>
 #include    <QMessageBox>
+#include <QTextDocumentWriter>
+#include <QPrinter>
 
 
 QT_BEGIN_NAMESPACE

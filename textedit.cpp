@@ -42,16 +42,44 @@ void TextEdit::functionFileOpen()
 
 void TextEdit::functionFileSave()
 {
-    QString nomeFile = QFileDialog::getSaveFileName(this, tr("Save File"), "",
+    QString nameFile = QFileDialog::getSaveFileName(this, tr("Save File"), "",
                                                         tr("Исполняемые файлы (*.txt);;Docx Files (*.doc *.docx);;Pdf (*.pdf)"));
-        if (nomeFile != "")
+        if (nameFile != "")
         {
-            QFile file(nomeFile);
+            QFile file(nameFile);
+
+            QFileInfo fileInfo(nameFile);
+            QString ext = fileInfo.completeSuffix();
+
+            qDebug()<<ext<<" Суффикс"<<Qt::endl;
+
+            QTextDocumentWriter textWriter;
+            textWriter.setFileName(file.fileName());
 
             if (file.open(QIODevice::ReadWrite))
             {
-                QTextStream stream (&file);
-                            stream << textEdit->toPlainText();
+                /*QTextStream stream (&file);
+                            stream << textEdit->toPlainText();*/
+                if (ext == "pdf"){
+                      QPrinter printer;
+                      printer.setOutputFormat(QPrinter::PdfFormat);
+                      printer.setOutputFileName(nameFile);
+
+                      QTextDocument *doc = textEdit->document();
+                      doc->print(&printer);
+                      qDebug()<<"Файл сохранился в PDF"<<Qt::endl;
+
+                }
+                if (ext == "txt"||ext =="docx"||ext=="doc"){
+
+                    QTextDocumentWriter doc;
+                    doc.setFileName(nameFile);
+                    doc.setFormat(ext.toLatin1());
+                    doc.write(textEdit->document());
+                    qDebug()<<"Файл сохранился в TXT"<<Qt::endl;
+                }
+
+
 
                 file.flush();
                 file.close();
