@@ -93,3 +93,10 @@ void TextEdit::functionFileExit()
     QCoreApplication::quit();
 }
 
+void TextEdit::functionEditFind()
+{
+    QTextDocument* doc = textEdit->document();
+    emit signalTextDocument(doc);
+    findWordClass->show();
+}
+

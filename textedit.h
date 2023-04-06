@@ -15,6 +15,8 @@
 #include  <QPrinter>
 
 
+#include "findwords.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class TextEdit; }
 QT_END_NAMESPACE
@@ -27,7 +29,8 @@ class TextEdit : public QMainWindow
 public:
     TextEdit(QWidget *parent = nullptr);
     ~TextEdit();
-
+signals:
+    void signalTextDocument(QTextDocument* document);
 
 private slots:
     void aboutSlot();
@@ -36,8 +39,11 @@ private slots:
     void functionFileSave();
     void functionFileExit();
 
+    void functionEditFind();
+
 private:
     Ui::TextEdit *ui;
+    FindWords* findWordClass;
     QTextEdit *textEdit;
 
     QAction* actionFileOpen = new QAction ("Открыть",   this);
