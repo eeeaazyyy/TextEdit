@@ -19,6 +19,9 @@ set(PROJECT_SOURCES
         textedit.cpp
         textedit.h
         textedit.ui
+        findwords.cpp
+        findwords.h
+        findwords.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
