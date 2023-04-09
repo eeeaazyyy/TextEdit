@@ -1,4 +1,5 @@
 #include "textedit.h"
+#include "findwords.h"
 #include "./ui_textedit.h"
 
 TextEdit::TextEdit(QWidget *parent)
@@ -9,12 +10,18 @@ TextEdit::TextEdit(QWidget *parent)
     this -> setMenuBar (createMenuBar());
 
     textEdit = new QTextEdit (this);
+    findClass = new FindWords;
+
     setCentralWidget         (textEdit);
 
     connect(actionAbout,    &QAction::triggered, this, &TextEdit::aboutSlot);
     connect(actionFileOpen, &QAction::triggered, this, &TextEdit::functionFileOpen);
     connect(actionFileSave, &QAction::triggered, this, &TextEdit::functionFileSave);
     connect(actionFileExit, &QAction::triggered, this, &TextEdit::functionFileExit);
+
+    connect(actionEditFind, &QAction::triggered,this, &TextEdit::functionEditFind);
+
+    //connect(findClass, &FindWords::signalDocument, findClass, &FindWords::On_btFindWord);
 }
 
 TextEdit::~TextEdit()
@@ -96,7 +103,7 @@ void TextEdit::functionFileExit()
 void TextEdit::functionEditFind()
 {
     QTextDocument* doc = textEdit->document();
+    findClass->show();
     emit signalTextDocument(doc);
-    findWordClass->show();
 }
 

@@ -43,13 +43,16 @@ private slots:
 
 private:
     Ui::TextEdit *ui;
-    FindWords* findWordClass;
+    FindWords* findClass;
     QTextEdit *textEdit;
 
     QAction* actionFileOpen = new QAction ("Открыть",   this);
     QAction* actionFileSave = new QAction ("Сохранить", this);
     QAction* actionFileExit = new QAction ("Выход",     this);
     QAction* actionAbout    = new QAction ("Справка",   this);
+
+
+    QAction* actionEditFind = new QAction("Найти", this);
 
     QMenuBar* createMenuBar(){
 
@@ -70,7 +73,7 @@ private:
     QMenu* createEditMenu()
     {
         QMenu* editMenu =  new QMenu ("Edit");
-               editMenu -> addAction ("Найти");
+               editMenu -> addAction (actionEditFind);
                editMenu -> addAction ("Заменить");
                editMenu -> addAction ("Вырезать");
         return editMenu;

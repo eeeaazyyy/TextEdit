@@ -2,7 +2,8 @@
 #define FINDWORDS_H
 
 #include <QDialog>
-
+#include <QTextDocument>
+#include <QMessageBox>
 
 
 namespace Ui {
@@ -23,7 +24,8 @@ signals:
 private:
     Ui::FindWords *ui;
 
-
+public slots:
+    void On_btFindWord(QTextDocument* document);
 };
 
 #endif // FINDWORDS_H
