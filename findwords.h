@@ -17,15 +17,18 @@ class FindWords : public QDialog
 public:
     explicit FindWords(QWidget *parent = nullptr);
     ~FindWords();
+    QTextDocument* document;
 
 signals:
-
+    void sendSignalDocument(QTextDocument* document);
 
 private:
     Ui::FindWords *ui;
 
 public slots:
-    void On_btFindWord(QTextDocument* document);
+
+    void On_btFindWord();
+    void Off_btFindWord();
 };
 
 #endif // FINDWORDS_H

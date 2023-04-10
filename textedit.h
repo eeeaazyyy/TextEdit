@@ -26,6 +26,7 @@ class TextEdit : public QMainWindow
 
     Q_OBJECT
 
+
 public:
     TextEdit(QWidget *parent = nullptr);
     ~TextEdit();

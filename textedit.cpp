@@ -21,7 +21,7 @@ TextEdit::TextEdit(QWidget *parent)
 
     connect(actionEditFind, &QAction::triggered,this, &TextEdit::functionEditFind);
 
-    //connect(findClass, &FindWords::signalDocument, findClass, &FindWords::On_btFindWord);
+    //connect(this, &TextEdit::signalTextDocument, findClass, &Fin);
 }
 
 TextEdit::~TextEdit()
@@ -104,6 +104,7 @@ void TextEdit::functionEditFind()
 {
     QTextDocument* doc = textEdit->document();
     findClass->show();
+    findClass->document = doc;
     emit signalTextDocument(doc);
 }
 

@@ -6,7 +6,9 @@ FindWords::FindWords(QWidget *parent) :
     ui(new Ui::FindWords)
 {
     ui->setupUi(this);
-    //connect(ui->btFindWord, &QPushButton::clicked,[this, document](){ this->On_btFindWord(document); });
+    //connect(ui->btFindWord, &QPushButton::clicked,this, std::bind(&FindWords::On_btFindWord,this, document)   );
+    connect(ui->btFindWord, &QPushButton::clicked, this, &FindWords::On_btFindWord);
+    connect(ui->btCancel, &QPushButton::clicked, this, &FindWords::Off_btFindWord);
 }
 
 FindWords::~FindWords()
@@ -14,11 +16,13 @@ FindWords::~FindWords()
     delete ui;
 }
 
-void FindWords::On_btFindWord(QTextDocument* document)
+
+void FindWords::On_btFindWord()
 {
+
     QString searchString = ui->lineEditFindWord->text();
     bool found = false;
-    document->undo();
+    //document->undo();
     if (searchString.isEmpty()) {
             QMessageBox::information(this, tr("Empty Search Field"),
                                      tr("The search field is empty. "
@@ -52,5 +56,10 @@ void FindWords::On_btFindWord(QTextDocument* document)
                                          tr("Sorry, the word cannot be found."));
             }
     }
+}
+
+void FindWords::Off_btFindWord()
+{
+    this->hide();
 }
 
