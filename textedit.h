@@ -13,6 +13,7 @@
 #include          <QMessageBox>
 #include  <QTextDocumentWriter>
 #include  <QPrinter>
+#include <QFontDialog>
 
 
 #include "findwords.h"
@@ -41,6 +42,7 @@ private slots:
     void functionFileExit();
 
     void functionEditFind();
+    void functionEditFont();
 
 private:
     Ui::TextEdit *ui;
@@ -54,6 +56,8 @@ private:
 
 
     QAction* actionEditFind = new QAction("Найти", this);
+    QAction* actionEditFont = new QAction("Шрифт", this);
+    QAction* actionEditReplace = new QAction("Заменить", this);
 
     QMenuBar* createMenuBar(){
 
@@ -75,6 +79,7 @@ private:
     {
         QMenu* editMenu =  new QMenu ("Edit");
                editMenu -> addAction (actionEditFind);
+               editMenu -> addAction (actionEditFont);
                editMenu -> addAction ("Заменить");
                editMenu -> addAction ("Вырезать");
         return editMenu;

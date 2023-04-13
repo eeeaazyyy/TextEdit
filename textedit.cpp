@@ -20,6 +20,7 @@ TextEdit::TextEdit(QWidget *parent)
     connect(actionFileExit, &QAction::triggered, this, &TextEdit::functionFileExit);
 
     connect(actionEditFind, &QAction::triggered,this, &TextEdit::functionEditFind);
+    connect(actionEditFont, &QAction::triggered,this, &TextEdit::functionEditFont);
 
     //connect(this, &TextEdit::signalTextDocument, findClass, &Fin);
 }
@@ -106,5 +107,14 @@ void TextEdit::functionEditFind()
     findClass->show();
     findClass->document = doc;
     emit signalTextDocument(doc);
+}
+
+void TextEdit::functionEditFont()
+{
+    bool ok;
+    QFont font = QFontDialog::getFont(&ok, QFont("Helvetica[Cronyx]"), this);
+    if (ok){
+        textEdit->setFont(font);
+    }
 }
 

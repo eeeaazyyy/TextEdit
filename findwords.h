@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QTextDocument>
 #include <QMessageBox>
+#include <QTextCharFormat>
 
 
 namespace Ui {
@@ -24,6 +25,8 @@ signals:
 
 private:
     Ui::FindWords *ui;
+    QTextCharFormat* plainFormat;
+    QTextCharFormat* colorFormat;
 
 public slots:
 

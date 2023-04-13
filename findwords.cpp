@@ -33,9 +33,9 @@ void FindWords::On_btFindWord()
 
             cursor.beginEditBlock();
 
-            QTextCharFormat plainFormat(highlightCursor.charFormat());
-            QTextCharFormat colorFormat = plainFormat;
-            colorFormat.setForeground(Qt::red);
+            plainFormat = new QTextCharFormat(highlightCursor.charFormat());
+            colorFormat = new QTextCharFormat(*plainFormat);
+            colorFormat->setForeground(Qt::red);
 
             while (!highlightCursor.isNull() && !highlightCursor.atEnd()) {
                 highlightCursor = document->find(searchString, highlightCursor,
@@ -45,7 +45,7 @@ void FindWords::On_btFindWord()
                     found = true;
                     highlightCursor.movePosition(QTextCursor::WordRight,
                                                  QTextCursor::KeepAnchor);
-                    highlightCursor.mergeCharFormat(colorFormat);
+                    highlightCursor.mergeCharFormat(*colorFormat);
                 }
             }
 
@@ -60,6 +60,9 @@ void FindWords::On_btFindWord()
 
 void FindWords::Off_btFindWord()
 {
+    delete plainFormat;
+    delete colorFormat;
     this->hide();
+
 }
 
