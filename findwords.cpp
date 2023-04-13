@@ -8,7 +8,7 @@ FindWords::FindWords(QWidget *parent) :
     ui->setupUi(this);
     //connect(ui->btFindWord, &QPushButton::clicked,this, std::bind(&FindWords::On_btFindWord,this, document)   );
     connect(ui->btFindWord, &QPushButton::clicked, this, &FindWords::On_btFindWord);
-    connect(ui->btCancel, &QPushButton::clicked, this, &FindWords::Off_btFindWord);
+    connect(ui->btCancel,   &QPushButton::clicked, this, &FindWords::Off_btFindWord);
 }
 
 FindWords::~FindWords()

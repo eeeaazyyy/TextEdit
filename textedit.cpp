@@ -11,6 +11,7 @@ TextEdit::TextEdit(QWidget *parent)
 
     textEdit = new QTextEdit (this);
     findClass = new FindWords;
+    replaceClass = new ReplaceWords;
 
     setCentralWidget         (textEdit);
 
@@ -19,8 +20,9 @@ TextEdit::TextEdit(QWidget *parent)
     connect(actionFileSave, &QAction::triggered, this, &TextEdit::functionFileSave);
     connect(actionFileExit, &QAction::triggered, this, &TextEdit::functionFileExit);
 
-    connect(actionEditFind, &QAction::triggered,this, &TextEdit::functionEditFind);
-    connect(actionEditFont, &QAction::triggered,this, &TextEdit::functionEditFont);
+    connect(actionEditFind,    &QAction::triggered, this, &TextEdit::functionEditFind);
+    connect(actionEditFont,    &QAction::triggered, this, &TextEdit::functionEditFont);
+    connect(actionEditReplace, &QAction::triggered, this, &TextEdit::functionEditReplace);
 
     //connect(this, &TextEdit::signalTextDocument, findClass, &Fin);
 }
@@ -116,5 +118,13 @@ void TextEdit::functionEditFont()
     if (ok){
         textEdit->setFont(font);
     }
+}
+
+void TextEdit::functionEditReplace()
+{
+    QTextDocument* doc = textEdit->document();
+    replaceClass->show();
+    replaceClass->document = doc;
+    emit signalTextDocumentForReplace(doc);
 }
 

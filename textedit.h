@@ -17,6 +17,7 @@
 
 
 #include "findwords.h"
+#include "replacewords.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class TextEdit; }
@@ -33,6 +34,7 @@ public:
     ~TextEdit();
 signals:
     void signalTextDocument(QTextDocument* document);
+    void signalTextDocumentForReplace(QTextDocument* document);
 
 private slots:
     void aboutSlot();
@@ -43,11 +45,15 @@ private slots:
 
     void functionEditFind();
     void functionEditFont();
+    void functionEditReplace();
 
 private:
     Ui::TextEdit *ui;
+
+    ReplaceWords* replaceClass;
     FindWords* findClass;
     QTextEdit *textEdit;
+
 
     QAction* actionFileOpen = new QAction ("Открыть",   this);
     QAction* actionFileSave = new QAction ("Сохранить", this);
@@ -80,7 +86,7 @@ private:
         QMenu* editMenu =  new QMenu ("Edit");
                editMenu -> addAction (actionEditFind);
                editMenu -> addAction (actionEditFont);
-               editMenu -> addAction ("Заменить");
+               editMenu -> addAction (actionEditReplace);
                editMenu -> addAction ("Вырезать");
         return editMenu;
     }

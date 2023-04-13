@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
     QApplication a (argc, argv);
     TextEdit     w;
     FindWords f;
+    ReplaceWords rw;
     w.show();
     //f.show();
 
