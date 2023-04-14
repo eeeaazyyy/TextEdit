@@ -122,9 +122,9 @@ void TextEdit::functionEditFont()
 
 void TextEdit::functionEditReplace()
 {
-    QTextDocument* doc = textEdit->document();
-    replaceClass->show();
-    replaceClass->document = doc;
+    QTextDocument* doc = textEdit -> document();
+    replaceClass -> show();
+    replaceClass -> document = doc;
     emit signalTextDocumentForReplace(doc);
 }
 

@@ -12,8 +12,8 @@
 #include          <QFileDialog>
 #include          <QMessageBox>
 #include  <QTextDocumentWriter>
-#include  <QPrinter>
-#include <QFontDialog>
+#include             <QPrinter>
+#include          <QFontDialog>
 
 
 #include "findwords.h"
@@ -61,8 +61,8 @@ private:
     QAction* actionAbout    = new QAction ("Справка",   this);
 
 
-    QAction* actionEditFind = new QAction("Найти", this);
-    QAction* actionEditFont = new QAction("Шрифт", this);
+    QAction* actionEditFind    = new QAction("Найти", this);
+    QAction* actionEditFont    = new QAction("Шрифт", this);
     QAction* actionEditReplace = new QAction("Заменить", this);
 
     QMenuBar* createMenuBar(){

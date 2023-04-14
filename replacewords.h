@@ -21,6 +21,7 @@ private:
     Ui::ReplaceWords *ui;
 private slots:
     void OnReplaceWords();
+    void ExitFunction();
 };
 
 #endif // REPLACEWORDS_H
