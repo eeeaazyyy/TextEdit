@@ -20,7 +20,8 @@ public:
 private:
     Ui::ReplaceWords *ui;
 private slots:
-    void OnReplaceWords();
+    void OnReplaceAllWords();
+    void OnReplaceOneWord();
     void ExitFunction();
 };
 
