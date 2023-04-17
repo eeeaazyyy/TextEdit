@@ -23,6 +23,7 @@ TextEdit::TextEdit(QWidget *parent)
     connect(actionEditFind,    &QAction::triggered, this, &TextEdit::functionEditFind);
     connect(actionEditFont,    &QAction::triggered, this, &TextEdit::functionEditFont);
     connect(actionEditReplace, &QAction::triggered, this, &TextEdit::functionEditReplace);
+    connect(actionEditCut,     &QAction::triggered, this, &TextEdit::functionEditCut);
 
     //connect(this, &TextEdit::signalTextDocument, findClass, &Fin);
 }
@@ -126,5 +127,10 @@ void TextEdit::functionEditReplace()
     replaceClass -> show();
     replaceClass -> document = doc;
     emit signalTextDocumentForReplace(doc);
+}
+
+void TextEdit::functionEditCut()
+{
+    textEdit->cut();
 }
 

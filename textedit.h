@@ -46,6 +46,7 @@ private slots:
     void functionEditFind();
     void functionEditFont();
     void functionEditReplace();
+    void functionEditCut();
 
 private:
     Ui::TextEdit *ui;
@@ -64,6 +65,7 @@ private:
     QAction* actionEditFind    = new QAction("Найти", this);
     QAction* actionEditFont    = new QAction("Шрифт", this);
     QAction* actionEditReplace = new QAction("Заменить", this);
+    QAction* actionEditCut     = new QAction("Вырезать", this);
 
     QMenuBar* createMenuBar(){
 
@@ -87,7 +89,7 @@ private:
                editMenu -> addAction (actionEditFind);
                editMenu -> addAction (actionEditFont);
                editMenu -> addAction (actionEditReplace);
-               editMenu -> addAction ("Вырезать");
+               editMenu -> addAction (actionEditCut);
         return editMenu;
     }
     QMenu* createHelpMenu(){
