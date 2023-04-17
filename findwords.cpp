@@ -48,13 +48,13 @@ void FindWords::On_btFindWord()
                     highlightCursor.mergeCharFormat(*colorFormat);
                 }
             }
-
             cursor.endEditBlock();
 
             if (found == false) {
                 QMessageBox::information(this, tr("Word Not Found"),
                                          tr("Sorry, the word cannot be found."));
             }
+
     }
 }
 
@@ -62,6 +62,7 @@ void FindWords::Off_btFindWord()
 {
     delete plainFormat;
     delete colorFormat;
+
     this->hide();
 
 }

@@ -28,8 +28,8 @@ TextEdit::TextEdit(QWidget *parent)
     connect(actionEditReplace, &QAction::triggered, this, &TextEdit::functionEditReplace);
     connect(actionEditCut,     &QAction::triggered, this, &TextEdit::functionEditCut);
 
-    connect(textEdit, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
-    //connect(this, &TextEdit::signalTextDocument, findClass, &Fin);
+    connect(textEdit,          &TextEdit::customContextMenuRequested, this, &TextEdit::showContextMenu);
+    connect(actionContextFont,     &QAction::triggered, this, &TextEdit::functionContextEditFont);
 }
 
 TextEdit::~TextEdit()
@@ -142,11 +142,23 @@ void TextEdit::showContextMenu(const QPoint &pt)
 {
     QMenu *menu = textEdit->createStandardContextMenu();
 
-    menu->addAction(actionEditFind);
-    menu->addAction(actionEditReplace);
-    menu->addAction(actionEditCut);
+    menu -> addAction (actionEditFind);
+    menu -> addAction (actionEditReplace);
+    menu -> addAction (actionEditCut);
+    menu -> addAction (actionContextFont);
 
-    menu->exec(QCursor::pos());
+    menu -> exec(QCursor::pos());
     delete menu;
+}
+
+void TextEdit::functionContextEditFont()
+{
+    bool ok;
+    QFont font = QFontDialog::getFont(&ok, QFont("Helvetica[Cronyx]"), this);
+    if (ok){
+        QTextCharFormat format;
+        format.setFont(font);
+        textEdit->mergeCurrentCharFormat(format);
+    }
 }
 

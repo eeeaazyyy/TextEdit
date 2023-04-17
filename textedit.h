@@ -49,14 +49,15 @@ private slots:
     void functionEditCut();
 
     void showContextMenu(const QPoint &pt);
+    void functionContextEditFont();
 
 
 private:
     Ui::TextEdit *ui;
 
-    ReplaceWords* replaceClass;
-    FindWords* findClass;
-    QTextEdit *textEdit;
+    ReplaceWords*      replaceClass;
+    FindWords*         findClass;
+    QTextEdit*         textEdit;
     QContextMenuEvent* event;
 
     QAction* actionFileOpen = new QAction ("Открыть",   this);
@@ -64,12 +65,13 @@ private:
     QAction* actionFileExit = new QAction ("Выход",     this);
     QAction* actionAbout    = new QAction ("Справка",   this);
 
-    QAction* actionEditFind    = new QAction("Найти",    this);
-    QAction* actionEditFont    = new QAction("Шрифт",    this);
-    QAction* actionEditReplace = new QAction("Заменить", this);
-    QAction* actionEditCut     = new QAction("Вырезать", this);
+    QAction* actionEditFind    = new QAction ("Найти",    this);
+    QAction* actionEditFont    = new QAction ("Шрифт",    this);
+    QAction* actionEditReplace = new QAction ("Заменить", this);
+    QAction* actionEditCut     = new QAction ("Вырезать", this);
 
 
+    QAction* actionContextFont = new QAction("Изменить выделенный шрифт", this);
 
     QMenuBar* createMenuBar(){
 
@@ -86,7 +88,7 @@ private:
                fileMenu -> addAction (actionFileSave);
                fileMenu -> addAction (actionFileExit);
 
-               actionFileSave->setShortcut(Qt::CTRL|Qt::Key_S);
+               actionFileSave -> setShortcut (Qt::CTRL|Qt::Key_S);
         return fileMenu;
     }
     QMenu* createEditMenu()
@@ -97,8 +99,8 @@ private:
                editMenu -> addAction (actionEditReplace);
                editMenu -> addAction (actionEditCut);
 
-               actionEditFind->setShortcut((Qt::CTRL|Qt::Key_F));
-               actionEditCut->setShortcut(Qt::CTRL|Qt::Key_X);
+               actionEditFind -> setShortcut (Qt::CTRL|Qt::Key_F);
+               actionEditCut  -> setShortcut (Qt::CTRL|Qt::Key_X);
 
         return editMenu;
     }
@@ -108,10 +110,5 @@ private:
                helpMenu -> addAction ("О программе");
         return helpMenu;
     }
-
-
-
-
-
 };
 #endif // TEXTEDIT_H
