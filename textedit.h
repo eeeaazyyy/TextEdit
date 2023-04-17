@@ -14,7 +14,7 @@
 #include  <QTextDocumentWriter>
 #include             <QPrinter>
 #include          <QFontDialog>
-
+#include     <QContextMenuEvent>
 
 #include "findwords.h"
 #include "replacewords.h"
@@ -48,24 +48,28 @@ private slots:
     void functionEditReplace();
     void functionEditCut();
 
+    void showContextMenu(const QPoint &pt);
+
+
 private:
     Ui::TextEdit *ui;
 
     ReplaceWords* replaceClass;
     FindWords* findClass;
     QTextEdit *textEdit;
-
+    QContextMenuEvent* event;
 
     QAction* actionFileOpen = new QAction ("Открыть",   this);
     QAction* actionFileSave = new QAction ("Сохранить", this);
     QAction* actionFileExit = new QAction ("Выход",     this);
     QAction* actionAbout    = new QAction ("Справка",   this);
 
-
-    QAction* actionEditFind    = new QAction("Найти", this);
-    QAction* actionEditFont    = new QAction("Шрифт", this);
+    QAction* actionEditFind    = new QAction("Найти",    this);
+    QAction* actionEditFont    = new QAction("Шрифт",    this);
     QAction* actionEditReplace = new QAction("Заменить", this);
     QAction* actionEditCut     = new QAction("Вырезать", this);
+
+
 
     QMenuBar* createMenuBar(){
 
@@ -81,6 +85,8 @@ private:
                fileMenu -> addAction (actionFileOpen);
                fileMenu -> addAction (actionFileSave);
                fileMenu -> addAction (actionFileExit);
+
+               actionFileSave->setShortcut(Qt::CTRL|Qt::Key_S);
         return fileMenu;
     }
     QMenu* createEditMenu()
@@ -90,6 +96,10 @@ private:
                editMenu -> addAction (actionEditFont);
                editMenu -> addAction (actionEditReplace);
                editMenu -> addAction (actionEditCut);
+
+               actionEditFind->setShortcut((Qt::CTRL|Qt::Key_F));
+               actionEditCut->setShortcut(Qt::CTRL|Qt::Key_X);
+
         return editMenu;
     }
     QMenu* createHelpMenu(){
@@ -98,6 +108,9 @@ private:
                helpMenu -> addAction ("О программе");
         return helpMenu;
     }
+
+
+
 
 
 };

@@ -9,9 +9,12 @@ TextEdit::TextEdit(QWidget *parent)
     ui   -> setupUi    (this);
     this -> setMenuBar (createMenuBar());
 
-    textEdit = new QTextEdit (this);
-    findClass = new FindWords;
+    textEdit     = new QTextEdit (this);
+    findClass    = new FindWords;
     replaceClass = new ReplaceWords;
+
+    textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
+
 
     setCentralWidget         (textEdit);
 
@@ -25,6 +28,7 @@ TextEdit::TextEdit(QWidget *parent)
     connect(actionEditReplace, &QAction::triggered, this, &TextEdit::functionEditReplace);
     connect(actionEditCut,     &QAction::triggered, this, &TextEdit::functionEditCut);
 
+    connect(textEdit, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
     //connect(this, &TextEdit::signalTextDocument, findClass, &Fin);
 }
 
@@ -132,5 +136,17 @@ void TextEdit::functionEditReplace()
 void TextEdit::functionEditCut()
 {
     textEdit->cut();
+}
+
+void TextEdit::showContextMenu(const QPoint &pt)
+{
+    QMenu *menu = textEdit->createStandardContextMenu();
+
+    menu->addAction(actionEditFind);
+    menu->addAction(actionEditReplace);
+    menu->addAction(actionEditCut);
+
+    menu->exec(QCursor::pos());
+    delete menu;
 }
 
