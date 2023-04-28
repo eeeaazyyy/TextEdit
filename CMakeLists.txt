@@ -25,6 +25,9 @@ set(PROJECT_SOURCES
         replacewords.cpp
         replacewords.h
         replacewords.ui
+        newtest.cpp
+        newtest.h
+        newtest.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
